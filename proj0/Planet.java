@@ -36,7 +36,7 @@ public class Planet {
 		if (dx == 0.0) {
 			return 0.0;
 		} else {
-			calcForceExertedBy(other) * dx / calcDistance(other)
+			return calcForceExertedBy(other) * dx / calcDistance(other);
 		}
 	}
 

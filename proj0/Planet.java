@@ -35,11 +35,8 @@ public class Planet {
 		double dx = other.xxPos - this.xxPos;
 		if (dx == 0.0) {
 			return 0.0;
-		}
-		else if (dx > 0.0) {
-			return calcForceExertedBy(other) * dx / calcDistance(other);
 		} else {
-			return -calcForceExertedBy(other) * dx / calcDistance(other);
+			calcForceExertedBy(other) * dx / calcDistance(other)
 		}
 	}
 
@@ -47,10 +44,8 @@ public class Planet {
 		double dy = other.yyPos - this.yyPos;
 		if (dy == 0.0) {
 			return 0.0;
-		} else if (dy > 0.0) {
-			return calcForceExertedBy(other) * dy / calcDistance(other);
 		} else {
-			return -calcForceExertedBy(other) * dy / calcDistance(other);
+			return calcForceExertedBy(other) * dy / calcDistance(other);
 		}
 	}
 

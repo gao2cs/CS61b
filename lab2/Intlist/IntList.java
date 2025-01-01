@@ -80,7 +80,7 @@ public class IntList {
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
 
-    public static IntList dcatenate(IntList A, IntList B) {
+    public static IntList dcatenate(IntList A, IntList B) { // Note: Destructive or Non-Destructive is determined by A(Not B) according to the problem definition.
         //TODO:  fill in method
         if (A == null) {
             return B;
@@ -98,53 +98,13 @@ public class IntList {
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
-    public static IntList catenate(IntList A, IntList B) {
+    public static IntList catenate(IntList A, IntList B) { // Note: Destructive or Non-Destructive is determined by A(Not B) according to the problem definition.
         //TODO:  fill in method
-        if (A == null && B == null) {
-            return null;
+        if (A == null) {
+            return B;
+        } else {
+            return new IntList(A.first, catenate(A.rest, B));
         }
-
-        if (A != null && B != null) {
-            IntList res = new IntList(A.first, null);
-            IntList ptr = res;
-            A = A.rest;
-            while (A != null) {
-                ptr.rest = new IntList(A.first, null);
-                ptr = ptr.rest;
-                A = A.rest;
-            }
-            while(B != null) {
-                ptr.rest = new IntList(B.first, null);
-                ptr = ptr.rest;
-                B = B.rest;
-            }
-            return res;
-        }
-
-        if (A != null) {
-            IntList res = new IntList(A.first, null);
-            IntList ptr = res;
-            A = A.rest;
-            while (A != null) {
-                ptr.rest = new IntList(A.first, null);
-                ptr = ptr.rest;
-                A = A.rest;
-            }
-            return res;
-        }
-
-        if (B != null) {
-            IntList res = new IntList(B.first, null);
-            IntList ptr = res;
-            B = B.rest;
-            while (B != null) {
-                ptr.rest = new IntList(B.first, null);
-                ptr = ptr.rest;
-                B = B.rest;
-            }
-            return res;
-        }
-        return null;
     }
 
 

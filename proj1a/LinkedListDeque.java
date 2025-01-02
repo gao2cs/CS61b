@@ -5,7 +5,7 @@ public class LinkedListDeque<T> {
         private Node prev;
         private Node next;
 
-        private Node (T item, Node prev, Node next) {
+        private Node(T item, Node prev, Node next) {
             this.item = item;
             this.prev = prev;
             this.next = next;
@@ -72,7 +72,6 @@ public class LinkedListDeque<T> {
     /**
      * Prints the elements of the DLList from first to last.
      *
-     * This method starts at the front element of the DLList and traverse the list, printing each item seperated by white space on the same line
      */
     public void printDeque() {
         if (isEmpty()) {
@@ -142,7 +141,7 @@ public class LinkedListDeque<T> {
      * @param index The index of the item to retrieve relative to the current node.
      * @return The item at the given index.
      */
-    public T helper(Node ptr, int index) {
+    private T helper(Node ptr, int index) {
         if (index == 0) {
             return ptr.item;
         } else {

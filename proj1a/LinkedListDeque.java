@@ -21,6 +21,17 @@ public class LinkedListDeque<T> {
         sentinel.next = sentinel;
         size = 0;
     }
+
+    public LinkedListDeque(LinkedListDeque<T> other) {
+        this();
+        if (!other.isEmpty()) {
+            Node ptr = other.sentinel.next;
+            while (ptr != other.sentinel) {
+                this.addLast(ptr.item);
+                ptr = ptr.next;
+            }
+        }
+    }
     /**
      * Adds an element to the front of the DLList.
      *
@@ -29,7 +40,7 @@ public class LinkedListDeque<T> {
     public void addFirst(T item) {
         sentinel.next = new Node(item, sentinel, sentinel.next);
         sentinel.next.next.prev = sentinel.next;
-        size++;
+        size += 1;
     }
     /**
      * Adds an element to the back of the DLList.
@@ -39,7 +50,7 @@ public class LinkedListDeque<T> {
     public void addLast(T item) {
         sentinel.prev = new Node(item, sentinel.prev, sentinel);
         sentinel.prev.prev.next = sentinel.prev;
-        size++;
+        size += 1;
     }
     /**
      * Checks if the DLList is empty.
@@ -123,5 +134,31 @@ public class LinkedListDeque<T> {
             }
             return ptr.item;
         }
+    }
+    /**
+     * Helper method to propagate the node and recursively retrieve the item at a given index.
+     *
+     * @param ptr   The current node being inspected.
+     * @param index The index of the item to retrieve relative to the current node.
+     * @return The item at the given index.
+     */
+    public T helper(Node ptr, int index) {
+        if (index == 0) {
+            return ptr.item;
+        } else {
+            return helper(ptr.next, index - 1);
+        }
+    }
+    /**
+     * Retrieves the item at the specified index using recursion.
+     *
+     * @param index The index of the item to retrieve (0-based).
+     * @return The item at the given index, or null if the index is invalid or the deque is empty.
+     */
+    public T getRecursive(int index) {
+        if (isEmpty() || index < 0 || index >= size) {
+            return null;
+        }
+        return helper(sentinel.next, index);
     }
 }

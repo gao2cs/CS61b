@@ -7,7 +7,6 @@
     <list default="true" id="4b7bdfc6-1231-48c8-a5ac-9e2340609a80" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LinkedListDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedListDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkedListDequeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedListDequeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +80,7 @@
       <updated>1735615479850</updated>
       <workItem from="1735615481472" duration="27000" />
       <workItem from="1735753771056" duration="5937000" />
-      <workItem from="1735778423507" duration="12164000" />
+      <workItem from="1735778423507" duration="12525000" />
     </task>
     <servers />
   </component>

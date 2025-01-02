@@ -22,16 +22,6 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(LinkedListDeque<T> other) {
-        this();
-        if (!other.isEmpty()) {
-            Node ptr = other.sentinel.next;
-            while (ptr != other.sentinel) {
-                this.addLast(ptr.item);
-                ptr = ptr.next;
-            }
-        }
-    }
     /**
      * Adds an element to the front of the DLList.
      *

@@ -45,6 +45,7 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.editor.code.editing",
     "vue.rearranger.settings.migration": "true"
   }
@@ -85,6 +86,7 @@
       <workItem from="1735870140767" duration="9992000" />
       <workItem from="1735881802535" duration="3028000" />
       <workItem from="1735885846370" duration="14000" />
+      <workItem from="1735945965274" duration="121000" />
     </task>
     <servers />
   </component>

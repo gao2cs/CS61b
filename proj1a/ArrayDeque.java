@@ -25,7 +25,6 @@ public class ArrayDeque<T> {
         items[nextFirst] = item;
         nextFirst = minusOne(nextFirst);
         size += 1;
-
     }
     /**
      * Adds an element to the back of the ArrayDeque.
@@ -39,7 +38,6 @@ public class ArrayDeque<T> {
         items[nextLast] = item;
         nextLast = plusOne(nextLast);
         size += 1;
-
     }
     /**
      * Checks if the ArrayDeque is empty.
@@ -90,7 +88,6 @@ public class ArrayDeque<T> {
         nextFirst = index;
         size -= 1;
         return item;
-
     }
     /**
      * Removes first element in the back of the ArrayDeque.

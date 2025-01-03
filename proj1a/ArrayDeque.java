@@ -133,7 +133,7 @@ public class ArrayDeque<T> {
     private void resize(int newCapacity) {
         T[] a = (T[]) new Object[newCapacity];
         int startIndex = plusOne(nextFirst);
-        for(int i = 0; i < size; ++i) {
+        for (int i = 0; i < size; ++i) {
             a[i] = items[startIndex];
             startIndex = plusOne(startIndex);
         }
@@ -151,7 +151,7 @@ public class ArrayDeque<T> {
         return (double) size / capacity;
     }
     /**
-     * Increments the given index by one, wrapping around to 0 if it reaches the end of the array.
+     * Increments the given index by one with wrapping around.
      *
      * @param index the current index in the array
      * @return the next index, wrapped around if it exceeds the array's capacity
@@ -160,7 +160,7 @@ public class ArrayDeque<T> {
         return (index + 1) % capacity;
     }
     /**
-     * Decrements the given index by one, wrapping around to the end of the array if it goes below 0.
+     * Decrements the given index by one with wrapping around.
      *
      * @param index the current index in the array
      * @return the previous index, wrapped around if it goes below 0

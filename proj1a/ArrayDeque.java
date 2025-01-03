@@ -13,20 +13,19 @@ public class ArrayDeque<T> {
         nextFirst = capacity - 1;
         size = 0;
     }
-
     /**
-    * Adds an element to the front of the ArrayDeque.
-    *
-    * @param item the element to be added to the front of the ArrayDeque
-    */
+     * Adds an element to the front of the ArrayDeque.
+     *
+     * @param item the element to be added to the front of the ArrayDeque
+     */
     public void addFirst(T item) {
         if (size() == capacity) {
             resize(2 * capacity);
-        } 
+        }
         items[nextFirst] = item;
-        nextFirst = ((nextFirst - 1) + capacity) % capacity;
+        nextFirst = minusOne(nextFirst);
         size += 1;
-        
+
     }
     /**
      * Adds an element to the back of the ArrayDeque.
@@ -36,16 +35,16 @@ public class ArrayDeque<T> {
     public void addLast(T item) {
         if (size() == capacity) {
             resize(2 * capacity);
-        } 
+        }
         items[nextLast] = item;
-        nextLast = (nextLast + 1) % capacity;
+        nextLast = plusOne(nextLast);
         size += 1;
-        
+
     }
     /**
      * Checks if the ArrayDeque is empty.
      *
-     * @return {@code true} if the DLList is empty, {@code false} otherwise
+     * @return {@code true} if the ArrayDeque is empty, {@code false} otherwise
      */
     public boolean isEmpty() {
         return size == 0;
@@ -65,27 +64,33 @@ public class ArrayDeque<T> {
     public void printDeque() {
         if (isEmpty()) {
             return;
+        } else {
+            int index = plusOne(nextFirst);
+            for (int i = 0; i < size(); ++i) {
+                System.out.print(items[index] + " ");
+                index = plusOne(index);
+            }
         }
     }
     /**
      * Removes first element in the front of the ArrayDeque.
      *
      * @return the first element in the front of the ArrayDeque
-    */
+     */
     public T removeFirst() {
         if (isEmpty()) {
             return null;
-        } 
-
+        }
         if (capacity >= 16 && usageFactor() < 0.25) {
             resize(capacity / 2);
         }
-        int index = (nextFirst + 1) % capacity;
+        int index = plusOne(nextFirst);
         T item = items[index];
         items[index] = null;
         nextFirst = index;
         size -= 1;
         return item;
+
     }
     /**
      * Removes first element in the back of the ArrayDeque.
@@ -95,17 +100,19 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (isEmpty()) {
             return null;
-        } else {
-            int index = ((nextLast - 1) + capacity) % capacity;
-            T item = items[index];
-            items[index] = null;
-            nextLast = index;
-            size -= 1;
-            return item;
         }
+        if (capacity >= 16 && usageFactor() < 0.25) {
+            resize(capacity / 2);
+        }
+        int index = minusOne(nextLast);
+        T item = items[index];
+        items[index] = null;
+        nextLast = index;
+        size -= 1;
+        return item;
     }
     /**
-     * Retrieves the item at the specified index in the DLList.
+     * Retrieves the item at the specified index in the ArrayDeque.
      *
      * @param index The zero-based index of the item to retrieve
      * @return The item at the specified index, or null if the index is invalid
@@ -114,21 +121,21 @@ public class ArrayDeque<T> {
         if (isEmpty() || index < 0 || index >= size) {
             return null;
         } else {
-            int equivalentIndex = ((nextFirst + 1) % capacity + index) % capacity;
+            int equivalentIndex = (plusOne(nextFirst) + index) % capacity;
             return items[equivalentIndex];
         }
     }
     /**
      * Resize the ArrayDeque to a new capacity.
      *
-     * @param newCapacity The capacity which the ArrayDeque is resized toward
+     * @param newCapacity The capacity toward which ArrayDeque is resized
      */
     private void resize(int newCapacity) {
         T[] a = (T[]) new Object[newCapacity];
-        int startIndex = (nextFirst + 1) % capacity;
+        int startIndex = plusOne(nextFirst);
         for(int i = 0; i < size; ++i) {
             a[i] = items[startIndex];
-            startIndex = (startIndex + 1) % capacity;
+            startIndex = plusOne(startIndex);
         }
         items = a;
         capacity = newCapacity;
@@ -138,9 +145,27 @@ public class ArrayDeque<T> {
     /**
      * Compute the usage factor of the ArrayDeque.
      *
-     * @return The usage factor in double of the ArrayDeque
+     * @return The usageFactor in double
      */
     private double usageFactor() {
-        double factor = (double) size / capacity;
+        return (double) size / capacity;
+    }
+    /**
+     * Increments the given index by one, wrapping around to 0 if it reaches the end of the array.
+     *
+     * @param index the current index in the array
+     * @return the next index, wrapped around if it exceeds the array's capacity
+     */
+    private int plusOne(int index) {
+        return (index + 1) % capacity;
+    }
+    /**
+     * Decrements the given index by one, wrapping around to the end of the array if it goes below 0.
+     *
+     * @param index the current index in the array
+     * @return the previous index, wrapped around if it goes below 0
+     */
+    private int minusOne(int index) {
+        return (index - 1 + capacity) % capacity;
     }
 }

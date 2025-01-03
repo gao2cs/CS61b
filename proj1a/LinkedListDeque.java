@@ -58,7 +58,6 @@ public class LinkedListDeque<T> {
     public int size() {
         return size;
     }
-
     /**
      * Prints the elements of the DLList from first to last.
      *

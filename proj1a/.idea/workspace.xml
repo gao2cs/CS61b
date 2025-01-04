@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4b7bdfc6-1231-48c8-a5ac-9e2340609a80" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkedListDequeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedListDequeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +35,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Xiang Gao/Desktop/cs61b/lab3",
+    "last_opened_file_path": "C:/Users/Xiang Gao/Desktop/cs61b/proj1b",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,7 +85,8 @@
       <workItem from="1735870140767" duration="9992000" />
       <workItem from="1735881802535" duration="3028000" />
       <workItem from="1735885846370" duration="14000" />
-      <workItem from="1735945965274" duration="121000" />
+      <workItem from="1735945965274" duration="186000" />
+      <workItem from="1736002540001" duration="11000" />
     </task>
     <servers />
   </component>

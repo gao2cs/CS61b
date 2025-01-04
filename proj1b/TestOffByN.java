@@ -8,7 +8,7 @@ public class TestOffByN {
 
     // Your tests go here.
     @Test
-    public void TestequalChars() {
+    public void testequalChars() {
         assertTrue(offByOne.equalChars('b', 'g'));
         assertTrue(offByOne.equalChars('c', 'h'));
         assertTrue(offByOne.equalChars('i', 'n'));

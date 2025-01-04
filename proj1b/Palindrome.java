@@ -13,7 +13,7 @@ public class Palindrome {
         }
         Character front = d.removeFirst();
         Character back = d.removeLast();
-        return front.equals(back) &&helper(d);
+        return front.equals(back) && helper(d);
     }
 
     public boolean isPalindrome(String word) {

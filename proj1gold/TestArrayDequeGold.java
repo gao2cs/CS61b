@@ -6,29 +6,32 @@ public class TestArrayDequeGold {
     public void testStudentArrayDeque() {
         StudentArrayDeque<Integer> studentDeque = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> solutionDeque = new ArrayDequeSolution<>();
+        String log = "";
+
         for (int i = 0; i < 1000; i += 1) {
             int operation = StdRandom.uniform(4);
             if (operation == 0) {
-                int randomInteger = StdRandom.uniform(1000000000);
-                studentDeque.addFirst(randomInteger);
-                solutionDeque.addFirst(randomInteger);
+                studentDeque.addFirst(i);
+                solutionDeque.addFirst(i);
+                log = log + "addFirst(" + i + ")\n";
             } else if (operation == 1) {
-                int randomInteger = StdRandom.uniform(1000000000);
-                studentDeque.addLast(randomInteger);
-                solutionDeque.addLast(randomInteger);
+                studentDeque.addLast(i);
+                solutionDeque.addLast(i);
+                log = log + "addLast(" + i + ")\n";
+
             } else if (operation == 2) {
                 if (!solutionDeque.isEmpty()) {
                     Integer a = studentDeque.removeFirst();
                     Integer b = solutionDeque.removeFirst();
-                    String message = "removeFirst(), student was " + a + ", correct was " + b;
-                    assertEquals(message, b, a);
+                    log = log + "removeFirst()\n";
+                    assertEquals(log, b, a);
                 }
             } else {
                 if (!solutionDeque.isEmpty()) {
                     Integer a = studentDeque.removeLast();
                     Integer b = solutionDeque.removeLast();
-                    String message = "removeLast(), student was " + a + ", correct was " + b;
-                    assertEquals(message, b, a);
+                    log = log + "removeLast()\n";
+                    assertEquals(log, b, a);
                 }
             }
         }

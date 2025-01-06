@@ -7,7 +7,6 @@ public class TestArrayDequeGold {
         StudentArrayDeque<Integer> studentDeque = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> solutionDeque = new ArrayDequeSolution<>();
         String log = "";
-
         for (int i = 0; i < 1000; i += 1) {
             int operation = StdRandom.uniform(4);
             if (operation == 0) {

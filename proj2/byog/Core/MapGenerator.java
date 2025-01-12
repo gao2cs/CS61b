@@ -15,7 +15,7 @@ public  class MapGenerator {
     private long seed;
     private Random random;
 
-    public MapGenerator(int width, int height, int seed) {
+    public MapGenerator(int width, int height, long seed) {
         this.width = width;
         this.height = height;
         this.seed = seed;

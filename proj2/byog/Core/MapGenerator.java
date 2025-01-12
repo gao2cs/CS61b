@@ -63,9 +63,9 @@ public  class MapGenerator {
 
     private void generateRooms(int N) {
         for (int i = 0; i < N; i += 1) {
-            int randomWidth = random.nextInt(4, 9);
-            int randomHeight = random.nextInt(4, 9);
-            Position p = new Position(random.nextInt(0, this.width - 1), random.nextInt(0, this.height - 1));
+            int randomWidth = 4 + random.nextInt(9 - 4 + 1);
+            int randomHeight = 4 + random.nextInt(9 - 4 + 1);
+            Position p = new Position(random.nextInt(this.width - 1), random.nextInt( this.height - 1));
             Room randomRoom = new Room(p, randomWidth, randomHeight);
             if (!isValidRoom(randomRoom)) {
                 continue;
@@ -170,7 +170,7 @@ public  class MapGenerator {
     }
 
     public void generateMap(int upperbound) {
-        int N = random.nextInt(10, upperbound);
+        int N = 10 + random.nextInt(upperbound - 10 + 1);
         generateRooms(N);
         connectRooms();
         buildWalls();

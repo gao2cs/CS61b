@@ -31,8 +31,17 @@ public class Game {
         // TODO: Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
+        StringBuilder numberBuilder = new StringBuilder();
+        for (char c: input.toCharArray()) {
+            if(Character.isDigit(c)) {
+                numberBuilder.append(c);
+            }
+        }
+        int seed = Integer.parseInt(numberBuilder.toString());
 
-        TETile[][] finalWorldFrame = null;
+        MapGenerator map = new MapGenerator(WIDTH, HEIGHT, seed);
+        map.generateMap(100);
+        TETile[][] finalWorldFrame = map.getMap();
         return finalWorldFrame;
     }
 }

@@ -37,7 +37,7 @@ public class Game {
                 numberBuilder.append(c);
             }
         }
-        long seed = Integer.parseInt(numberBuilder.toString());
+        long seed = Long.parseLong(numberBuilder.toString());
 
         MapGenerator map = new MapGenerator(WIDTH, HEIGHT, seed);
         map.generateMap(100);

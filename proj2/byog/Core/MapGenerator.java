@@ -29,18 +29,20 @@ public  class MapGenerator {
     }
 
     private Position sampleRoom(Room room) {
-        return new Position(room.p.x + 1 +  random.nextInt(room.width - 2), room.p.y + 1 + random.nextInt(room.height - 2));
+        return new Position(room.p.x + 1 +  random.nextInt(room.width - 2),
+                room.p.y + 1 + random.nextInt(room.height - 2));
     }
 
     private boolean isValidRoom(Room room) {
-        return room.p.x >= 0 && room.p.y >= 0 && room.p.x + room.width < this.width && room.p.y + room.height < this.height;
+        return room.p.x >= 0 && room.p.y >= 0 && room.p.x + room.width < this.width &&
+                room.p.y + room.height < this.height;
     }
 
     private void addRoom(Room room) {
         if (!isValidRoom(room)) {
             return;
         }
-        for (int x = room.p.x ; x < room.p.x + room.width; x += 1) {
+        for (int x = room.p.x; x < room.p.x + room.width; x += 1) {
             for (int y = room.p.y; y < room.p.y + room.height; y += 1) {
                 if (x == room.p.x || y == room.p.y || x == room.p.x + room.width - 1 || y == room.p.y + room.height - 1) {
                     world[x][y] = TETile.colorVariant(Tileset.WALL, 32, 32, 32, random);
@@ -143,7 +145,6 @@ public  class MapGenerator {
             }
         }
     }
-
 
     private void addPlayer() {
         while (true) {

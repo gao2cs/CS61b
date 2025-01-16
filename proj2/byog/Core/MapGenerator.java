@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class MapGenerator {
+import java.io.Serializable;
+
+public class MapGenerator implements Serializable{
     protected int width, height;
     protected TETile[][] world;
     protected ArrayList<Room> rooms = new ArrayList<>();

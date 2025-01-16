@@ -33,20 +33,27 @@ public class Game {
 
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
-        StringBuilder numberBuilder = new StringBuilder();
-        for (char c: input.toCharArray()) {
-            if (Character.isDigit(c)) {
-                numberBuilder.append(c);
-            }
-        }
-        long seed = Long.parseLong(numberBuilder.toString());
-
-        // MapGenerator map = new MapGenerator(WIDTH, HEIGHT, seed);
-        // map.generateMap(100);
         Menu menu = new Menu(WIDTH, HEIGHT);
-        menu.startGameWithString(seed);
-        TETile[][] finalWorldFrame = menu.mapUIgenerator.world;
+        input = toLower(input);
+        char firstChar = input.charAt(0);
+        if (firstChar == 'n') {
+            menu.newGame(input);
+        } else if (firstChar == 'l') {
+            menu.loadGame(input);
+        } else if (firstChar == 'q') {
+            System.exit(0);
+        }
+
+        TETile[][] finalWorldFrame = menu.mapUIgenerator.getMap();
         return finalWorldFrame;
+    }
+
+    private String toLower(String input) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (char c: input.toCharArray()) {
+            stringBuilder.append(Character.toLowerCase(c));
+        }
+        return stringBuilder.toString();
     }
 }
 

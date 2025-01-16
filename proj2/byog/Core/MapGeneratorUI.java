@@ -48,7 +48,7 @@ public class MapGeneratorUI extends MapGenerator {
     }
 
     protected boolean isValidMove(int x, int y) {
-        if (x < 0 || x >= this.width || y < 0 || y >= this.height || world[x][y] != Tileset.FLOOR) {
+        if (x < 0 || x >= this.width || y < 0 || y >= this.height || !world[x][y].description().equals("floor")) {
             return false;
         }
         return true;

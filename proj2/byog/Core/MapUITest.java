@@ -6,6 +6,6 @@ public class MapUITest {
 
     public static void main(String[] args) {
         Menu menu = new Menu(WIDTH, HEIGHT);
-        menu.startGameWithString(Long.parseLong("123456789"));
+        menu.startGame();
     }
 }

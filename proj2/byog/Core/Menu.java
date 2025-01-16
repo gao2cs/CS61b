@@ -105,7 +105,6 @@ public class Menu implements Serializable {
                     mapUIgenerator.generateMap(100);
                     ter.initialize(this.width, this.height);
                     ter.renderFrame(mapUIgenerator.getMap());
-                    // System.out.println(TETile.toString(mapUIgenerator.getMap()));
                 } else {
                     stringBuilder.append(key);
                     drawFrame(stringBuilder.toString());
@@ -131,7 +130,6 @@ public class Menu implements Serializable {
                                     if (mapUIgenerator == null || this.menuState) {
                                         System.exit(0);
                                     } else {
-                                        //mapUIgenerator.saveMap();
                                         this.saveGame();
                                         this.gameState = false;
                                         displayMenu();
@@ -148,7 +146,6 @@ public class Menu implements Serializable {
                         if (!gameState) {
                             this.menuState = false;
                             this.gameState = true;
-                            //mapUIgenerator.loadMap();
                             this.readGame();
                             mapUIgenerator.recoverTileEnginePen();
                             ter.renderFrame(mapUIgenerator.getMap());
@@ -228,13 +225,13 @@ public class Menu implements Serializable {
                 case ':':
                     if (i + 1 < playString.length() && playString.charAt(i + 1) == 'q') {
                         saveGame();
-                        //System.exit(0);
+                        return;
                     }
+                    break;
             }
         }
     }
 
-    // Reference for serializable: GPT4!
     private void saveGame() {
         mapUIgenerator.saveMap();
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("savefile.txt"))) {

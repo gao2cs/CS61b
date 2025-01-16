@@ -41,9 +41,12 @@ public class Game {
         }
         long seed = Long.parseLong(numberBuilder.toString());
 
-        MapGenerator map = new MapGenerator(WIDTH, HEIGHT, seed);
-        map.generateMap(100);
-        TETile[][] finalWorldFrame = map.getMap();
+        // MapGenerator map = new MapGenerator(WIDTH, HEIGHT, seed);
+        // map.generateMap(100);
+        Menu menu = new Menu(WIDTH, HEIGHT);
+        menu.startGameWithString(seed);
+        TETile[][] finalWorldFrame = menu.mapUIgenerator.world;
         return finalWorldFrame;
     }
 }
+

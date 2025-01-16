@@ -15,7 +15,7 @@ public class Menu {
     private boolean gameState;
     private boolean menuState;
 
-    private MapGeneratorUI mapUIgenerator = null;
+    public MapGeneratorUI mapUIgenerator = null;
     TERenderer ter;
 
     public Menu(int width, int height) {
@@ -28,6 +28,32 @@ public class Menu {
 
     public void displayMenu() {
         initializeMenu();
+        this.menuState = true;
+        StdDraw.show();
+    }
+
+    public void displayMenuWithInputString() {
+        StdDraw.setCanvasSize(this.width * 16, this.height * 16);
+        StdDraw.setXscale(0, this.width);
+        StdDraw.setYscale(0, this.height);
+
+        StdDraw.clear(Color.BLACK);
+        StdDraw.enableDoubleBuffering();
+
+        int xCenter = this.width / 2;
+        int yCenter = this.height / 2;
+
+        Font font = new Font("Monaco", Font.PLAIN, 40);
+        StdDraw.setFont(font);
+        StdDraw.setPenColor(StdDraw.ORANGE);
+        StdDraw.text(xCenter, 0.75 * this.height, "CS61B: THE GAME");
+        StdDraw.enableDoubleBuffering();
+
+        font = new Font("Monaco",Font.PLAIN, 20);
+        StdDraw.setFont(font);
+        StdDraw.text(xCenter, 0.5 * this.height, "Load Game (L)");
+        StdDraw.text(xCenter, 0.5 * this.height - 1.5, "Quit (Q)");
+
         this.menuState = true;
         StdDraw.show();
     }
@@ -102,6 +128,64 @@ public class Menu {
                 } else {
                     stringBuilder.append(key);
                     drawFrame(stringBuilder.toString());
+                }
+            }
+        }
+    }
+
+    public void startGameWithString(long seed) {
+        this.seed = this.seed;
+        this.gameState = true;
+        this.menuState = false;
+        mapUIgenerator = new MapGeneratorUI(this.width , this.height, this.seed);
+        mapUIgenerator.generateMap(100);
+        ter.initialize(this.width, this.height);
+        ter.renderFrame(mapUIgenerator.getMap());
+
+        while (true) {
+            if (StdDraw.hasNextKeyTyped()) {
+                char key = Character.toLowerCase(StdDraw.nextKeyTyped());
+                switch (key) {
+                    case ':':
+                        while (true) {
+                            if (StdDraw.hasNextKeyTyped()) {
+                                if (Character.toLowerCase(StdDraw.nextKeyTyped()) == 'q') {
+                                    if (mapUIgenerator == null || this.menuState) {
+                                        System.exit(0);
+                                    } else {
+                                        mapUIgenerator.saveMap();
+                                        this.gameState = false;
+                                        displayMenuWithInputString();
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 'l':
+                        if (mapUIgenerator == null || !mapUIgenerator.saveState) {
+                            System.exit(0);
+                        }
+                        if (!gameState) {
+                            this.menuState = false;
+                            this.gameState = true;
+                            mapUIgenerator.loadMap();
+                            mapUIgenerator.recoverTileEnginePen();
+                            ter.renderFrame(mapUIgenerator.getMap());
+                        }
+                        break;
+                    case 'a':
+                    case 'w':
+                    case 's':
+                    case 'd':
+                        if (this.gameState) {
+                            mapUIgenerator.handlePlayer(key);
+                            ter.renderFrame(mapUIgenerator.getMap());
+                        }
+                        break;
+                } // After key pressing, the program will run the next line and loop
+                if (!menuState) {
+                    mapUIgenerator.enableHUD(this.gameState);
                 }
             }
         }

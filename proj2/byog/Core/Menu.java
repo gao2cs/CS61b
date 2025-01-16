@@ -186,9 +186,9 @@ public class Menu implements Serializable {
         this.menuState = false;
         mapUIgenerator = new MapGeneratorUI(this.width , this.height, this.seed);
         mapUIgenerator.generateMap(100);
-        ter.initialize(this.width, this.height);
+        //ter.initialize(this.width, this.height);
         play(playString.substring(i + 1));
-        ter.renderFrame(mapUIgenerator.getMap());
+        //ter.renderFrame(mapUIgenerator.getMap());
     }
 
     public void loadGame(String playString) {
@@ -196,9 +196,9 @@ public class Menu implements Serializable {
         readGame();
         this.gameState = true;
         this.menuState = false;
-        ter.initialize(this.width, this.height);
+        //ter.initialize(this.width, this.height);
         play(playString.substring(1));
-        ter.renderFrame(mapUIgenerator.getMap());
+        //ter.renderFrame(mapUIgenerator.getMap());
     }
 
     private void play(String playString) {
@@ -242,7 +242,7 @@ public class Menu implements Serializable {
             out.writeObject(mapUIgenerator.player);
             out.writeLong(this.seed); // Save the seed
             out.close();
-            System.out.println("Game saved successfully.");
+            //System.out.println("Game saved successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -254,7 +254,7 @@ public class Menu implements Serializable {
             mapUIgenerator.player = (Position) in.readObject();
             this.seed = in.readLong();
             in.close();
-            System.out.println("Game loaded successfully.");
+            //System.out.println("Game loaded successfully.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -5,7 +5,7 @@ import byog.TileEngine.Tileset;
 
 import edu.princeton.cs.introcs.StdDraw;
 
-import java.awt.*;
+import java.awt.Font;
 
 public class MapGeneratorUI extends MapGenerator {
 
@@ -83,6 +83,7 @@ public class MapGeneratorUI extends MapGenerator {
                     updatePlayer(player.x, player.y - 1);
                 }
                 break;
+            default:
         }
     }
 

@@ -9,7 +9,8 @@ import java.util.Random;
 
 import java.io.Serializable;
 
-public class MapGenerator implements Serializable{
+public class MapGenerator implements Serializable {
+    private static final long serialVersionUID = 389102514428468720L;
     protected int width, height;
     protected TETile[][] world;
     protected ArrayList<Room> rooms = new ArrayList<>();
@@ -36,8 +37,8 @@ public class MapGenerator implements Serializable{
     }
 
     protected boolean isValidRoom(Room room) {
-        return room.p.x >= 0 && room.p.y >= 0 && room.p.x + room.width < this.width &&
-                room.p.y + room.height < this.height;
+        return room.p.x >= 0 && room.p.y >= 0 && room.p.x + room.width < this.width
+                && room.p.y + room.height < this.height;
     }
 
     protected void addRoom(Room room) {
@@ -46,7 +47,8 @@ public class MapGenerator implements Serializable{
         }
         for (int x = room.p.x; x < room.p.x + room.width; x += 1) {
             for (int y = room.p.y; y < room.p.y + room.height; y += 1) {
-                if (x == room.p.x || y == room.p.y || x == room.p.x + room.width - 1 || y == room.p.y + room.height - 1) {
+                if (x == room.p.x || y == room.p.y || x == room.p.x + room.width - 1
+                        || y == room.p.y + room.height - 1) {
                     world[x][y] = TETile.colorVariant(Tileset.WALL, 32, 32, 32, random);
                 } else {
                     world[x][y] = Tileset.FLOOR;
@@ -69,7 +71,8 @@ public class MapGenerator implements Serializable{
         for (int i = 0; i < N; i += 1) {
             int randomWidth = 4 + random.nextInt(9 - 4 + 1);
             int randomHeight = 4 + random.nextInt(9 - 4 + 1);
-            Position p = new Position(random.nextInt(this.width - 1), random.nextInt( this.height - 1));
+            Position p = new Position(random.nextInt(this.width - 1),
+                    random.nextInt(this.height - 1));
             Room randomRoom = new Room(p, randomWidth, randomHeight);
             if (!isValidRoom(randomRoom)) {
                 continue;
@@ -140,7 +143,8 @@ public class MapGenerator implements Serializable{
                 if (world[x][y] == Tileset.FLOOR) {
                     for (int[] neighbor : neighbors) {
                         if (world[x + neighbor[0]][y + neighbor[1]] == Tileset.NOTHING) {
-                            world[x + neighbor[0]][y + neighbor[1]] = TETile.colorVariant(Tileset.WALL, 32, 32, 32, random);
+                            world[x + neighbor[0]][y + neighbor[1]] = TETile.colorVariant(Tileset.WALL,
+                                    32, 32, 32, random);
                         }
                     }
                 }

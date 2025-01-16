@@ -1,9 +1,9 @@
 package byog.Core;
 
-public  class Room implements Comparable<Room> {
-    public Position p;
-    public int width, height;
-    public boolean hasWalls = false;
+public class Room implements Comparable<Room> {
+    protected Position p;
+    protected int width, height;
+    protected boolean hasWalls = false;
 
     @Override
     public int compareTo(Room other) {
@@ -21,7 +21,7 @@ public  class Room implements Comparable<Room> {
     }
 
     private boolean verticalOverlaps(Room other) {
-        return other.p.y<= this.p.y + this.height - 1 && other.p.y + other.height - 1 >= this.p.y;
+        return other.p.y <= this.p.y + this.height - 1 && other.p.y + other.height - 1 >= this.p.y;
     }
 
     public boolean overlaps(Room other) {

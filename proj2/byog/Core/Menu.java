@@ -4,7 +4,8 @@ import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import edu.princeton.cs.introcs.StdDraw;
 
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.Random;
 
@@ -22,7 +23,7 @@ public class Menu implements Serializable {
     private boolean gameState;
     private boolean menuState;
 
-    public MapGeneratorUI mapUIgenerator = null;
+    protected MapGeneratorUI mapUIgenerator = null;
     TERenderer ter;
 
     public Menu(int width, int height) {
@@ -37,10 +38,6 @@ public class Menu implements Serializable {
         initializeMenu();
         this.menuState = true;
         StdDraw.show();
-    }
-
-    private void setRandomSeed(long seed) {
-        rand = new Random(seed);
     }
 
     private void initializeMenu() {
@@ -60,7 +57,7 @@ public class Menu implements Serializable {
         StdDraw.text(xCenter, 0.75 * this.height, "CS61B: THE GAME");
         StdDraw.enableDoubleBuffering();
 
-        font = new Font("Monaco",Font.PLAIN, 20);
+        font = new Font("Monaco", Font.PLAIN, 20);
         StdDraw.setFont(font);
         StdDraw.text(xCenter, 0.5 * this.height, "New Game (N)");
         StdDraw.text(xCenter, 0.5 * this.height - 1.5, "Load Game (L)");
@@ -80,7 +77,7 @@ public class Menu implements Serializable {
         StdDraw.setPenColor(StdDraw.ORANGE);
         StdDraw.text(xCenter, 0.75 * this.height, "CS61B: THE GAME");
 
-        font = new Font("Monaco",Font.PLAIN, 20);
+        font = new Font("Monaco", Font.PLAIN, 20);
         StdDraw.setFont(font);
         StdDraw.text(xCenter, 0.5 * this.height, "New Game (N)");
         StdDraw.text(xCenter, 0.5 * this.height - 1.5, "Load Game (L)");
@@ -101,7 +98,7 @@ public class Menu implements Serializable {
                     this.seed = Long.parseLong(stringBuilder.toString());
                     this.gameState = true;
                     this.menuState = false;
-                    mapUIgenerator = new MapGeneratorUI(this.width , this.height, this.seed);
+                    mapUIgenerator = new MapGeneratorUI(this.width, this.height, this.seed);
                     mapUIgenerator.generateMap(100);
                     ter.initialize(this.width, this.height);
                     ter.renderFrame(mapUIgenerator.getMap());
@@ -160,6 +157,7 @@ public class Menu implements Serializable {
                             ter.renderFrame(mapUIgenerator.getMap());
                         }
                         break;
+                    default:
                 } // After key pressing, the program will run the next line and loop
                 if (!menuState) {
                     mapUIgenerator.enableHUD(this.gameState);
@@ -181,7 +179,7 @@ public class Menu implements Serializable {
         this.seed = Long.parseLong(numberBuilder.toString());
         this.gameState = true;
         this.menuState = false;
-        mapUIgenerator = new MapGeneratorUI(this.width , this.height, this.seed);
+        mapUIgenerator = new MapGeneratorUI(this.width, this.height, this.seed);
         mapUIgenerator.generateMap(100);
         //ter.initialize(this.width, this.height);
         play(playString.substring(i + 1));
@@ -189,7 +187,7 @@ public class Menu implements Serializable {
     }
 
     public void loadGame(String playString) {
-        mapUIgenerator = new MapGeneratorUI(this.width , this.height, this.seed);
+        mapUIgenerator = new MapGeneratorUI(this.width, this.height, this.seed);
         readGame();
         this.gameState = true;
         this.menuState = false;
@@ -203,23 +201,31 @@ public class Menu implements Serializable {
             char key = playString.charAt(i);
             switch (key) {
                 case 'a':
-                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x - 1, mapUIgenerator.player.y)) {
-                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x - 1, mapUIgenerator.player.y);
+                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x - 1,
+                            mapUIgenerator.player.y)) {
+                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x - 1,
+                                mapUIgenerator.player.y);
                     }
                     break;
                 case 'w':
-                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x, mapUIgenerator.player.y + 1)) {
-                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x, mapUIgenerator.player.y + 1);
+                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x,
+                            mapUIgenerator.player.y + 1)) {
+                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x,
+                                mapUIgenerator.player.y + 1);
                     }
                     break;
                 case 'd':
-                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x + 1, mapUIgenerator.player.y)) {
-                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x + 1, mapUIgenerator.player.y);
+                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x + 1,
+                            mapUIgenerator.player.y)) {
+                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x + 1,
+                                mapUIgenerator.player.y);
                     }
                     break;
                 case 's':
-                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x, mapUIgenerator.player.y - 1)) {
-                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x, mapUIgenerator.player.y - 1);
+                    if (mapUIgenerator.isValidMove(mapUIgenerator.player.x,
+                            mapUIgenerator.player.y - 1)) {
+                        mapUIgenerator.updatePlayer(mapUIgenerator.player.x,
+                                mapUIgenerator.player.y - 1);
                     }
                     break;
                 case ':':
@@ -228,6 +234,7 @@ public class Menu implements Serializable {
                         return;
                     }
                     break;
+                default:
             }
         }
     }

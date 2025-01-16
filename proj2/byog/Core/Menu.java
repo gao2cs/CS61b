@@ -241,8 +241,6 @@ public class Menu implements Serializable {
             out.writeObject(mapUIgenerator.world);
             out.writeObject(mapUIgenerator.player);
             out.writeLong(this.seed); // Save the seed
-            out.close();
-            //System.out.println("Game saved successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -253,8 +251,6 @@ public class Menu implements Serializable {
             mapUIgenerator.world = (TETile[][]) in.readObject();
             mapUIgenerator.player = (Position) in.readObject();
             this.seed = in.readLong();
-            in.close();
-            //System.out.println("Game loaded successfully.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

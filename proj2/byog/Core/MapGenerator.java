@@ -8,12 +8,12 @@ import java.util.Collections;
 import java.util.Random;
 
 public class MapGenerator {
-    private int width, height;
-    private TETile[][] world;
-    private ArrayList<Room> rooms = new ArrayList<>();
+    protected int width, height;
+    protected TETile[][] world;
+    protected ArrayList<Room> rooms = new ArrayList<>();
 
-    private long seed;
-    private Random random;
+    protected long seed;
+    protected Random random;
 
     public MapGenerator(int width, int height, long seed) {
         this.width = width;
@@ -28,17 +28,17 @@ public class MapGenerator {
         }
     }
 
-    private Position sampleRoom(Room room) {
+    protected Position sampleRoom(Room room) {
         return new Position(room.p.x + 1 +  random.nextInt(room.width - 2),
                 room.p.y + 1 + random.nextInt(room.height - 2));
     }
 
-    private boolean isValidRoom(Room room) {
+    protected boolean isValidRoom(Room room) {
         return room.p.x >= 0 && room.p.y >= 0 && room.p.x + room.width < this.width &&
                 room.p.y + room.height < this.height;
     }
 
-    private void addRoom(Room room) {
+    protected void addRoom(Room room) {
         if (!isValidRoom(room)) {
             return;
         }
@@ -54,7 +54,7 @@ public class MapGenerator {
         rooms.add(room);
     }
 
-    private boolean isOverlapping(Room other) {
+    protected boolean isOverlapping(Room other) {
         for (Room room: rooms) {
             if (room.overlaps(other)) {
                 return true;
@@ -63,7 +63,7 @@ public class MapGenerator {
         return false;
     }
 
-    private void generateRooms(int N) {
+    protected void generateRooms(int N) {
         for (int i = 0; i < N; i += 1) {
             int randomWidth = 4 + random.nextInt(9 - 4 + 1);
             int randomHeight = 4 + random.nextInt(9 - 4 + 1);
@@ -80,7 +80,7 @@ public class MapGenerator {
         }
     }
 
-    private void drawHorizontalHallway(Position p1, Position p2) {
+    protected void drawHorizontalHallway(Position p1, Position p2) {
         int xStart = Math.min(p1.x, p2.x);
         int xEnd = Math.max(p1.x, p2.x);
         assert p1.y == p2.y;
@@ -89,7 +89,7 @@ public class MapGenerator {
         }
     }
 
-    private void drawVerticalHallway(Position p1, Position p2) {
+    protected void drawVerticalHallway(Position p1, Position p2) {
         int yStart = Math.min(p1.y, p2.y);
         int yEnd = Math.max(p1.y, p2.y);
         assert p1.x == p2.x;
@@ -98,7 +98,7 @@ public class MapGenerator {
         }
     }
 
-    private void drawLShapedHallway(Position p1, Position p2) {
+    protected void drawLShapedHallway(Position p1, Position p2) {
         if (random.nextBoolean()) {
             drawHorizontalHallway(p1, new Position(p2.x, p1.y));
             drawVerticalHallway(new Position(p2.x, p1.y), p2);
@@ -108,7 +108,7 @@ public class MapGenerator {
         }
     }
 
-    private void connectRooms() {
+    protected void connectRooms() {
         Collections.sort(rooms);
         for (int i = 0; i < rooms.size() - 1; i += 1) {
             Room room1 = rooms.get(i);
@@ -127,7 +127,7 @@ public class MapGenerator {
         }
     }
 
-    private void buildWalls() {
+    protected void buildWalls() {
         int[][] neighbors = {
                 {-1,  1}, {0,  1}, {1,  1},
                 {-1,  0},          {1,  0},
@@ -146,7 +146,7 @@ public class MapGenerator {
         }
     }
 
-    private void addPlayer() {
+    protected void addPlayer() {
         while (true) {
             int x = random.nextInt(this.width);
             int y = random.nextInt(this.height);
@@ -158,7 +158,7 @@ public class MapGenerator {
         }
     }
 
-    private void addLockedDoor() {
+    protected void addLockedDoor() {
         while (true) {
             int x = random.nextInt(this.width);
             int y = random.nextInt(this.height);

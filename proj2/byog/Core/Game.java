@@ -33,6 +33,7 @@ public class Game {
 
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
+        TETile[][] finalWorldFrame = null;
         Menu menu = new Menu(WIDTH, HEIGHT);
         input = toLower(input);
         char firstChar = input.charAt(0);
@@ -40,11 +41,10 @@ public class Game {
             menu.newGame(input);
         } else if (firstChar == 'l') {
             menu.loadGame(input);
-        } else if (firstChar == 'q') {
+        } else if (firstChar == ':' && input.length() > 1 && input.charAt(1) == 'q') {
             System.exit(0);
         }
-
-        TETile[][] finalWorldFrame = menu.mapUIgenerator.getMap();
+        finalWorldFrame = menu.mapUIgenerator.getMap();
         return finalWorldFrame;
     }
 

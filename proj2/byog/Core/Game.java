@@ -41,8 +41,6 @@ public class Game {
             menu.newGame(input);
         } else if (firstChar == 'l') {
             menu.loadGame(input);
-        } else if (firstChar == 'q') {
-            System.exit(0);
         }
         finalWorldFrame = menu.mapUIgenerator.getMap();
         return finalWorldFrame;

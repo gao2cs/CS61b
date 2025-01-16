@@ -228,7 +228,7 @@ public class Menu implements Serializable {
                 case ':':
                     if (i + 1 < playString.length() && playString.charAt(i + 1) == 'q') {
                         saveGame();
-                        System.exit(0);
+                        //System.exit(0);
                     }
             }
         }

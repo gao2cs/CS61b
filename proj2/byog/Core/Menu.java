@@ -241,7 +241,8 @@ public class Menu implements Serializable {
 
     private void saveGame() {
         mapUIgenerator.saveMap();
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("savefile.txt"))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream("savefile.txt"))) {
             out.writeObject(mapUIgenerator.world);
             out.writeObject(mapUIgenerator.player);
             out.writeLong(this.seed); // Save the seed

@@ -143,8 +143,8 @@ public class MapGenerator implements Serializable {
                 if (world[x][y] == Tileset.FLOOR) {
                     for (int[] neighbor : neighbors) {
                         if (world[x + neighbor[0]][y + neighbor[1]] == Tileset.NOTHING) {
-                            world[x + neighbor[0]][y + neighbor[1]] = TETile.colorVariant(Tileset.WALL,
-                                    32, 32, 32, random);
+                            world[x + neighbor[0]][y + neighbor[1]] = TETile.colorVariant(
+                                    Tileset.WALL, 32, 32, 32, random);
                         }
                     }
                 }
